@@ -118,8 +118,8 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
       addPurchase(result.id, result.provider)
     } catch (e) {
       setError(
-        `Failed to activate invite: ${
-          e.response ? e.response.data : 'invitation is invalid'
+        `${t('failed_activate_invite')} ${
+          e.response ? e.response.data : t('invitation_invalid')
         }`
       )
     } finally {
@@ -139,16 +139,12 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
           flex="1"
           style={{marginLeft: rem(20)}}
         >
-          <SubHeading color="white">{t('Enter invitation code')}</SubHeading>
+          <SubHeading color="white">{t('enter_invitation_code')}</SubHeading>
           <Flex justify="space-between">
             <Text color="xwhite.050" fontSize={rem(14)}>
               {onSkip
-                ? t(
-                    'Enter an invitation code to get a free shared node connection or skip it to enter the invitation code later'
-                  )
-                : t(
-                    'Enter an invitation code to get a free shared node connection'
-                  )}
+                ? t('enter_invitation_code_free_node_or_skip')
+                : t('enter_invitation_code_free_node')}
             </Text>
           </Flex>
         </Flex>
@@ -167,7 +163,7 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
           style={{width: '100%'}}
         >
           <Label htmlFor="code" style={{color: 'white', fontSize: rem(13)}}>
-            {t('Invitation code')}
+            {t('invitation_code')}
           </Label>
           <Flex width="100%" style={{marginBottom: rem(20)}}>
             <Input
@@ -176,7 +172,7 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
               borderColor="xblack.008"
               backgroundColor="xblack.016"
               onChange={e => setState({...state, code: e.target.value})}
-              placeholder={t('Your invitation code')}
+              placeholder={t('your_invitation_code')}
               color="white"
             />
           </Flex>
@@ -201,7 +197,7 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
                 size={5}
                 style={{transform: 'rotate(-90deg)', marginTop: -3}}
               ></Icon>
-              {t('Back')}
+              {t('back')}
             </FlatButton>
 
             <Flex>
@@ -213,7 +209,7 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
                   onClick={onSkip}
                   isDisabled={waiting}
                 >
-                  {t('Skip for now')}
+                  {t('skip_for_now')}
                 </SecondaryButton>
               )}
               <PrimaryButton
@@ -222,7 +218,7 @@ export function ActivateInvite({privateKey, onBack, onSkip, onNext}) {
                 type="submit"
                 ml="auto"
               >
-                {t('Activate')}
+                {t('activate')}
               </PrimaryButton>
             </Flex>
           </Flex>

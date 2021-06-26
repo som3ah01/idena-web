@@ -45,7 +45,7 @@ export default function ImportKey() {
         Router.push('/')
       }
     } else {
-      setError(t('Key or password is invalid. Try again.'))
+      setError(t('invalid_key_password'))
     }
   }
 
@@ -67,13 +67,11 @@ export default function ImportKey() {
                 style={{marginLeft: rem(20)}}
               >
                 <SubHeading color="white">
-                  {t('Import your private key backup to sign in')}
+                  {t('import_your_private_key_backup')}
                 </SubHeading>
                 <Flex justify="space-between">
                   <Text color="xwhite.050" fontSize={rem(14)}>
-                    {t(
-                      'Enter your private key backup. You can export your private key from Idena app (see Settings page).'
-                    )}
+                    {t('enter_your_private_key_backup')}
                   </Text>
                 </Flex>
               </Flex>
@@ -95,7 +93,7 @@ export default function ImportKey() {
                   htmlFor="key"
                   style={{color: 'white', fontSize: rem(13)}}
                 >
-                  {t('Encrypted private key')}
+                  {t('encrypted_private_key')}
                 </Label>
                 <Flex width="100%" style={{marginBottom: rem(20)}}>
                   <Input
@@ -104,7 +102,7 @@ export default function ImportKey() {
                     borderColor="xblack.008"
                     backgroundColor="xblack.016"
                     onChange={e => setState({...state, key: e.target.value})}
-                    placeholder={t('Enter your private key backup')}
+                    placeholder={t('encrypted_private_key_backup')}
                   />
                 </Flex>
                 <Label
@@ -114,7 +112,7 @@ export default function ImportKey() {
                     fontSize: rem(13),
                   }}
                 >
-                  {t('Password')}
+                  {t('password')}
                 </Label>
                 <Flex width="100%">
                   <PasswordInput
@@ -128,7 +126,7 @@ export default function ImportKey() {
                         password: e.target.value,
                       })
                     }
-                    placeholder={t('Enter your password')}
+                    placeholder={t('enter_your_password')}
                   />
                 </Flex>
                 <Flex
@@ -145,7 +143,7 @@ export default function ImportKey() {
                     }
                     style={{fontWeight: 300}}
                   >
-                    {t('Save the encrypted key on this computer')}
+                    {t('save_encrypted_key')}
                   </Checkbox>
                   <Flex>
                     <Button
@@ -153,10 +151,10 @@ export default function ImportKey() {
                       css={{marginRight: rem(10)}}
                       onClick={() => Router.push('/')}
                     >
-                      {t('Cancel')}
+                      {t('cancel')}
                     </Button>
                     <Button type="submit" disabled={!state.key}>
-                      {t('Import')}
+                      {t('import')}
                     </Button>
                   </Flex>
                 </Flex>

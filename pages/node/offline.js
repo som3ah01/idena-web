@@ -127,7 +127,7 @@ export default function Offline() {
           >
             <Flex>
               <Text color={theme.colors.white} fontSize={rem(18)}>
-                {t('Connect to Idena node')}
+                {t('connect_idena_node')}
               </Text>
             </Flex>
 
@@ -137,7 +137,7 @@ export default function Offline() {
                 fontSize={rem(11)}
                 css={{opacity: 0.5}}
               >
-                {t('Choose an option')}
+                {t('choose_option')}
               </Text>
             </Flex>
             <Flex marginTop={rem(15)}>
@@ -149,7 +149,7 @@ export default function Offline() {
                     borderColor="white"
                   >
                     <Text color={theme.colors.white} fontSize={rem(13)}>
-                      {t('Rent a shared node')}
+                      {t('rent_shared_node')}
                     </Text>
                   </Radio>
                   <Radio
@@ -158,7 +158,7 @@ export default function Offline() {
                     borderColor="white"
                   >
                     <Text color={theme.colors.white} fontSize={rem(13)}>
-                      {t('Enter shared node API key')}
+                      {t('enter_shared_node_api_key')}
                     </Text>
                   </Radio>
                   <Radio
@@ -168,7 +168,7 @@ export default function Offline() {
                     isDisabled={!activateActive}
                   >
                     <Text color={theme.colors.white} fontSize={rem(13)}>
-                      {t('Activate invite')}
+                      {t('activate_invite')}
                     </Text>
                   </Radio>
                 </Stack>
@@ -182,9 +182,7 @@ export default function Offline() {
               >
                 <Flex style={{opacity: 0.5}} alignItems="center">
                   <Icon name="info-outline" size={4} mr={3}></Icon>
-                  <Flex>
-                    {t('You can run your own node at your desktop computer.')}
-                  </Flex>
+                  <Flex>{t('you_can_node_desktop')}</Flex>
                 </Flex>
               </Text>
             </Flex>
@@ -195,9 +193,9 @@ export default function Offline() {
                 ml="auto"
                 mr={2}
               >
-                <SecondaryButton>{t('Download desktop app')}</SecondaryButton>
+                <SecondaryButton>{t('download_desktop_app')}</SecondaryButton>
               </Link>
-              <PrimaryButton onClick={process}>{t('Continue')}</PrimaryButton>
+              <PrimaryButton onClick={process}>{t('continue')}</PrimaryButton>
             </Flex>
           </Flex>
         </Flex>
@@ -217,7 +215,7 @@ export default function Offline() {
           >
             <Flex direction="column" w={rem(480)}>
               <Flex fontSize={rem(14)}>
-                {t('The node is unavailable. Please contact the node owner:', {
+                {t('node_is_unavailable', {
                   nsSeparator: '|',
                 })}
               </Flex>

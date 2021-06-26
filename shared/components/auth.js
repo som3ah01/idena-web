@@ -4,6 +4,7 @@ import {margin} from 'polished'
 import React, {useState} from 'react'
 import {FiChevronRight} from 'react-icons/fi'
 import Router from 'next/router'
+import {useTranslation} from 'react-i18next'
 import theme, {rem} from '../theme'
 import {Label, Button} from '.'
 import {
@@ -29,6 +30,7 @@ function RestoreKey() {
   const [error, setError] = useState()
 
   const dnaAppUrl = useDnaUrl()
+  const {t} = useTranslation()
 
   return (
     <AuthLayout>
@@ -42,7 +44,7 @@ function RestoreKey() {
             style={{marginLeft: rem(20)}}
           >
             <SubHeading color="white">
-              Enter password to unlock your account
+              {t('enter_password_to_unlock')}
             </SubHeading>
 
             <Flex justify="space-between">
@@ -60,7 +62,7 @@ function RestoreKey() {
                   fontSize: rem(13),
                 }}
               >
-                <span>Remove private key from this computer</span>
+                <span>{t('remove_private_key_from_computer')}</span>
 
                 <FiChevronRight
                   style={{
@@ -86,7 +88,7 @@ function RestoreKey() {
                 setError(null)
                 login(password)
               } catch (err) {
-                setError('Password is invalid. Try again.')
+                setError(t('password_invalid'))
                 console.log(err)
               }
             }}
@@ -98,7 +100,7 @@ function RestoreKey() {
                 fontSize: rem(13),
               }}
             >
-              Password
+              {t('password')}
             </Label>
             <Flex width="100%">
               <PasswordInput
@@ -107,14 +109,14 @@ function RestoreKey() {
                 borderColor="xblack.008"
                 backgroundColor="xblack.016"
                 onChange={e => setPassword(e.target.value)}
-                placeholder="Enter your password"
+                placeholder={t('enter_your_password')}
               />
               <Button
                 type="submit"
                 disabled={!password}
                 style={{marginLeft: rem(10)}}
               >
-                Proceed
+                {t('proceed')}
               </Button>
             </Flex>
             {error && (
@@ -170,7 +172,7 @@ function RestoreKey() {
 
 function Init() {
   const dnaAppUrl = useDnaUrl()
-
+  const {t} = useTranslation()
   return (
     <AuthLayout>
       <AuthLayout.Small>
@@ -184,7 +186,9 @@ function Init() {
           </Flex>
 
           <Flex textAlign="center">
-            <SubHeading color="white">Proof-Of-Person Blockchain</SubHeading>
+            <SubHeading color="white">
+              {t('proof_Of_person_blockchain')}
+            </SubHeading>
           </Flex>
 
           <Text
@@ -193,11 +197,11 @@ function Init() {
             textAlign="center"
             marginBottom={rem(45)}
           >
-            Join the mining of the first human-centric cryptocurrency
+            {t('join_the_minig_of')}
           </Text>
 
           <Button onClick={() => Router.push('/key/create')}>
-            Create an account
+            {t('create_an_account')}
           </Button>
 
           <Flex justifyContent="center">
@@ -210,7 +214,7 @@ function Init() {
                 textAlign: 'center',
               }}
             >
-              Sign In
+              {t('sign_in')}
             </FlatButton>
           </Flex>
         </Flex>

@@ -16,6 +16,7 @@ import {Tooltip} from './components'
 import {EpochPeriod, IdentityStatus} from '../types'
 import {useIdentity} from '../providers/identity-context'
 import {useEpoch} from '../providers/epoch-context'
+import GlobLangauge from './GlobLangauge'
 
 function Sidebar() {
   return (
@@ -48,26 +49,27 @@ function Sidebar() {
 function ApiStatus() {
   const settings = useSettingsState()
   const epoch = useEpoch()
+  const {t} = useTranslation()
 
   let bg = theme.colors.white01
   let color = theme.colors.muted
-  let text = 'Loading...'
+  let text = t('loading')
 
   if (settings.apiKeyState === apiKeyStates.OFFLINE) {
     bg = theme.colors.danger02
     color = theme.colors.danger
-    text = 'Offline'
+    text = t('offline')
   } else if (settings.apiKeyState === apiKeyStates.EXPIRED) {
     bg = theme.colors.warning02
     color = theme.colors.warning
-    text = 'Expiring'
+    text = t('expiring')
   } else if (
     settings.apiKeyState === apiKeyStates.ONLINE ||
     settings.apiKeyState === apiKeyStates.EXTERNAL
   ) {
     bg = theme.colors.success02
     color = theme.colors.success
-    text = 'Online'
+    text = t('online')
   }
 
   return (
@@ -88,9 +90,10 @@ function ApiStatus() {
           </Link>
         ) : settings.apiKeyState === apiKeyStates.ONLINE ? (
           <Tooltip
-            label={`Access to the shared node will be expired after the validation ceremony ${
+            label={t(
+              'access_to_shared_node_will_expired',
               epoch ? new Date(epoch.nextValidation).toLocaleString() : ''
-            }`}
+            )}
             placement="right"
             zIndex={1000}
             bg="#45484d"
@@ -143,23 +146,23 @@ function Nav() {
         }}
       >
         <NavItem href="/" icon={<Icon name="profile" size={5} />}>
-          {t('My Idena') || nickname}
+          {t('my_idena') || nickname}
         </NavItem>
         <NavItem href="/wallets" icon={<Icon name="wallet" size={5} />}>
-          {t('Wallets')}
+          {t('wallets')}
         </NavItem>
         <NavItem href="/flips/list" icon={<Icon name="gallery" size={5} />}>
-          {t('Flips')}
+          {t('flips')}
         </NavItem>
         <NavItem href="/settings" icon={<Icon name="settings" size={5} />}>
-          {t('Settings')}
+          {t('settings')}
         </NavItem>
         <NavItem
           href=""
           icon={<Icon name="delete" size={5} />}
           onClick={logout}
         >
-          {t('Logout')}
+          {t('logout')}
         </NavItem>
       </ul>
       <style jsx>{`

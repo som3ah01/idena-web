@@ -1,6 +1,9 @@
 /* eslint-disable camelcase */
 import i18n from 'i18next'
 import {initReactI18next} from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
+import Backend from 'i18next-http-backend'
+
 import {loadPersistentStateValue} from './shared/utils/persist'
 
 // import en_translation from '../locales/en/translation.json'
@@ -45,6 +48,7 @@ import {loadPersistentStateValue} from './shared/utils/persist'
 // import sv_error from '../locales/sv/error.json'
 
 export const AVAILABLE_LANGS = [
+  'ar',
   'en',
   'id',
   'fr',
@@ -67,9 +71,13 @@ export const AVAILABLE_LANGS = [
   'sv',
 ]
 
-i18n.use(initReactI18next).init({
-  debug: global.isDev,
-  resources: {
+i18n
+  .use(LanguageDetector) // detect user language
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(Backend) // load translation using http -> see /public/locales
+  .init({
+    debug: global.isDev,
+    // resources: {
     // en: {translation: en_translation, error: en_error},
     // id: {translation: ri_translation, error: ri_error},
     // fr: {translation: fr_translation, error: fr_error},
@@ -90,13 +98,31 @@ i18n.use(initReactI18next).init({
     // tr: {translation: tr_translation, error: tr_error},
     // bg: {translation: bg_translation, error: bg_error},
     // sv: {translation: sv_translation, error: sv_error},
-  },
-  lng: loadPersistentStateValue('settings', 'lng'),
-  fallbackLng: 'en',
-  keySeparator: false,
-  interpolation: {
-    escapeValue: false,
-  },
-})
+    // },
+    // lng: loadPersistentStateValue('settings', 'lng'),
+    fallbackLng: 'en',
+    detection: {
+      order: [
+        'path',
+        'cookie',
+        'htmlTag',
+        'localStorage',
+        'subdomain',
+        'querystring',
+        'navigator',
+      ],
+      caches: ['cookie'],
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/translation.json',
+    },
+    keySeparator: false,
+    interpolation: {
+      escapeValue: false,
+    },
+    react: {
+      useSuspense: false,
+    },
+  })
 
 export default i18n
