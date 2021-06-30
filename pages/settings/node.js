@@ -19,7 +19,10 @@ import {
 import {PrimaryButton, SecondaryButton} from '../../shared/components/button'
 import {checkKey, fetchEpoch, getKeyById, getProvider} from '../../shared/api'
 
-const BASIC_ERROR = 'Node is unavailable.'
+const BASIC_ERROR = () => {
+  const {t} = useTranslation()
+  return t('node_is_unavailable')
+}
 
 function Settings() {
   const {t} = useTranslation()
@@ -40,8 +43,8 @@ function Settings() {
 
   const notify = () =>
     addNotification({
-      title: 'Settings updated',
-      body: `Connected to url ${state.url}`,
+      title: t('settings_updated'),
+      body: `${t('Connected_to_url')} ${state.url}`,
     })
 
   const restorePurchase = async () => {
@@ -50,10 +53,11 @@ function Settings() {
       const provider = await getProvider(settingsState.apiKeyData.provider)
       addPurchasedKey(provider.data.url, result.key, result.epoch)
     } catch {
-      addError({title: 'Restore failed. Please, try again.'})
+      addError({title: t('restore_faild')})
     }
   }
 
+  const errorNodeOwner = t('node_unavailable_contact_owner')
   useEffect(() => {
     async function check() {
       try {
@@ -61,9 +65,7 @@ function Settings() {
         const result = await checkKey(settingsState.apiKey)
         if (result.epoch >= epoch - 1) {
           const provider = await getProvider(result.provider)
-          setOfflineError(
-            `This node is unavailable. Please contact the node owner: ${provider.data.ownerName}`
-          )
+          setOfflineError(` ${errorNodeOwner} ${provider.data.ownerName}`)
         }
       } catch (e) {
         setOfflineError(BASIC_ERROR)
@@ -89,9 +91,7 @@ function Settings() {
             py={2}
           >
             <AlertIcon name="info" color="red.500" size={5} mr={3}></AlertIcon>
-            {t(
-              'API key is expired. You cannot use the node for the upcoming validation ceremony'
-            )}
+            {t('api_key_expired')}
           </Alert>
         )}
         {settingsState.apiKeyState === apiKeyStates.OFFLINE &&
@@ -119,7 +119,7 @@ function Settings() {
         <FormControl>
           <Flex justify="space-between">
             <FormLabel color="brandGray.500" mb={2}>
-              {t('Node address')}
+              {t('node_address')}
             </FormLabel>
             <Flex>
               <Link
@@ -128,7 +128,7 @@ function Settings() {
                 fontSize={rem(13)}
                 style={{fontWeight: 500}}
               >
-                Rent a new node {'>'}
+                {t('rent_new_node')} {'>'}
               </Link>
             </Flex>
           </Flex>
@@ -140,7 +140,7 @@ function Settings() {
         </FormControl>
         <FormControl>
           <FormLabel color="brandGray.500" mb={2}>
-            {t('Node API key')}
+            {t('node_API_key')}
           </FormLabel>
           <PasswordInput
             id="key"
@@ -162,7 +162,7 @@ function Settings() {
             }}
             ml="auto"
           >
-            {t('Save')}
+            {t('save')}
           </PrimaryButton>
         </Flex>
       </Stack>

@@ -252,13 +252,13 @@ function ActionPanel() {
       }}
     >
       {currentPeriod !== EpochPeriod.None && (
-        <Block title={t('Current period')}>{currentPeriod}</Block>
+        <Block title={t('current_period')}>{currentPeriod}</Block>
       )}
-      <Block title={t('My current task')}>
+      <Block title={t('my_current_task')}>
         <CurrentTask epoch={epoch.epoch} period={currentPeriod} />
       </Block>
       {currentPeriod === EpochPeriod.None && (
-        <Block title={t('Next validation')}>
+        <Block title={t('next_validation')}>
           {new Date(nextValidation).toLocaleString()}
         </Block>
       )}
@@ -318,7 +318,7 @@ function CurrentTask({epoch, period}) {
         case identity.canActivateInvite:
           return (
             <Link href="/" color={theme.colors.white}>
-              {t('Activate invite')}
+              {t('activate_invite')}
             </Link>
           )
 
@@ -337,11 +337,13 @@ function CurrentTask({epoch, period}) {
           const shouldSendFlips = remainingRequiredFlipsNumber > 0
 
           return shouldSendFlips
-            ? `Create ${remainingRequiredFlipsNumber} required ${pluralize(
+            ? `${t(
+                'create'
+              )} ${remainingRequiredFlipsNumber} required ${pluralize(
                 'flip',
                 remainingRequiredFlipsNumber
               )}`
-            : `Wait for validation${
+            : `${t('wait_for_validation')}${
                 optionalFlipsNumber > 0
                   ? ` or create ${optionalFlipsNumber} optional ${pluralize(
                       'flip',
@@ -356,7 +358,7 @@ function CurrentTask({epoch, period}) {
           IdentityStatus.Suspended,
           IdentityStatus.Zombie,
         ].includes(status):
-          return t('Wait for validation')
+          return t('wait_for_validation')
 
         default:
           return '...'
@@ -371,9 +373,7 @@ function CurrentTask({epoch, period}) {
         case [IdentityStatus.Undefined, IdentityStatus.Invite].includes(
           identity.state
         ):
-          return t(
-            'Can not start validation session because you did not activate invite'
-          )
+          return t('can_not_start_validation_because_not_activate_invite')
 
         case [
           IdentityStatus.Candidate,
@@ -397,17 +397,15 @@ function CurrentTask({epoch, period}) {
 
             if (lastValidationEpoch === epoch)
               return done ? (
-                t(`Wait for validation end`)
+                t(`wait_for_validation_end`)
               ) : (
                 <Link href="/validation" color={theme.colors.white}>
-                  {t('Validate')}
+                  {t('validate')}
                 </Link>
               )
 
             return isValidated
-              ? t(
-                  'Can not start validation session because you did not submit flips.'
-                )
+              ? t('can_not_start_validation_because_npt_submit_flips')
               : 'Starting your validation session...' // this is not normal thus not localized
           }
           return '...'
@@ -419,10 +417,10 @@ function CurrentTask({epoch, period}) {
     }
 
     case EpochPeriod.FlipLottery:
-      return t('Shuffling flips...')
+      return t('shuffling_flips')
 
     case EpochPeriod.AfterLongSession:
-      return t(`Wait for validation end`)
+      return t(`wait_for_validation_end`)
 
     default:
       return '...'

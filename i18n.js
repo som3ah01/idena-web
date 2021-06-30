@@ -77,6 +77,8 @@ i18n
   .use(Backend) // load translation using http -> see /public/locales
   .init({
     debug: global.isDev,
+    locales: AVAILABLE_LANGS,
+    defaultLocale: 'en',
     // resources: {
     // en: {translation: en_translation, error: en_error},
     // id: {translation: ri_translation, error: ri_error},

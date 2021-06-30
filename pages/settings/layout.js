@@ -15,14 +15,14 @@ function SettingsLayout({children}) {
     <Layout canRedirect={false}>
       <Box px={theme.spacings.xxxlarge} py={theme.spacings.large}>
         <Box>
-          <PageTitle>{t('Settings')}</PageTitle>
+          <PageTitle>{t('settings')}</PageTitle>
           {/* TODO: make it shared <Pill /> or <Tab /> component */}
           <FlipFilter value={router.pathname} onChange={router.push}>
             <FlipFilterOption value="/settings">
-              {t('General')}
+              {t('general')}
             </FlipFilterOption>
             <FlipFilterOption value="/settings/node">
-              {t('Node')}
+              {t('node')}
             </FlipFilterOption>
           </FlipFilter>
         </Box>

@@ -38,10 +38,8 @@ function ExportPK() {
   const {exportKey} = useAuthDispatch()
 
   return (
-    <Section title={t('Export private key')}>
-      <Text mb={2}>
-        {t('Create a new password to export your private key')}
-      </Text>
+    <Section title={t('export_private_key')}>
+      <Text mb={2}>{t('create_new_password_export')}</Text>
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -52,7 +50,7 @@ function ExportPK() {
       >
         <Flex align="center">
           <Label htmlFor="url" style={{width: 120}}>
-            {t('New password')}
+            {t('new_password')}
           </Label>
           <PasswordInput
             value={password}
@@ -70,18 +68,14 @@ function ExportPK() {
             type="submit"
             disabled={!password}
           >
-            {t('Export')}
+            {t('export')}
           </Button>
         </Flex>
       </form>
       <Dialog isOpen={showDialog} onClose={() => setShowDialog(false)}>
-        <DialogHeader>{t('Encrypted private key')}</DialogHeader>
+        <DialogHeader>{t('encrypted_private_key')}</DialogHeader>
         <DialogBody>
-          <Text>
-            {t(
-              'Scan QR by your mobile phone or copy code below for export privatekey.'
-            )}
-          </Text>
+          <Text>{t('scan_qr_mobile')}</Text>
           <ChakraFlex justify="center" mx="auto" my={8}>
             <QRCode value={pk} />
           </ChakraFlex>
@@ -101,7 +95,7 @@ function ExportPK() {
                   textAlign: 'center',
                 }}
               >
-                Copy
+                {t('copy')}
               </FlatButton>
             )}
           </ChakraFlex>
@@ -114,7 +108,7 @@ function ExportPK() {
         </DialogBody>
         <DialogFooter>
           <SecondaryButton onClick={() => setShowDialog(false)}>
-            {t('Close')}
+            {t('close')}
           </SecondaryButton>
         </DialogFooter>
       </Dialog>

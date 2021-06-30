@@ -134,24 +134,24 @@ export default function FlipListPage() {
   return (
     <Layout>
       <Page>
-        <PageTitle>{t('My Flips')}</PageTitle>
+        <PageTitle>{t('my_flips')}</PageTitle>
         <Flex justify="space-between" align="center" alignSelf="stretch" mb={8}>
           <FlipFilter
             value={filter}
             onChange={value => send('FILTER', {filter: value})}
           >
             <FlipFilterOption value={FlipFilterType.Active}>
-              {t('Active')}
+              {t('active')}
             </FlipFilterOption>
             <FlipFilterOption value={FlipFilterType.Draft}>
-              {t('Drafts')}
+              {t('drafts')}
             </FlipFilterOption>
             <FlipFilterOption value={FlipFilterType.Archived}>
-              {t('Archived')}
+              {t('archived')}
             </FlipFilterOption>
           </FlipFilter>
           <IconLink href="/flips/new" icon="plus-solid">
-            {t('New flip')}
+            {t('new_flip')}
           </IconLink>
         </Flex>
         {current.matches('ready.dirty.active') &&
@@ -170,10 +170,10 @@ export default function FlipListPage() {
               >
                 <AlertIcon name="info" color="green.500" size={5} mr={3} />
                 {remainingRequiredFlips > 0
-                  ? t(`Please submit required flips.`, {remainingRequiredFlips})
+                  ? t(`submit_requiered_flips`, {remainingRequiredFlips})
                   : null}{' '}
                 {remainingOptionalFlips > 0
-                  ? t(`You can also submit optional flips if you want.`, {
+                  ? t(`submit_optinal_flips`, {
                       remainingOptionalFlips,
                     })
                   : null}
@@ -199,7 +199,7 @@ export default function FlipListPage() {
                 size={5}
                 mr={3}
               ></AlertIcon>
-              {t('You can not submit flips. Please get validated first. ')}
+              {t('can_not_submit_flips_try_again')}
             </Alert>
           </Box>
         )}
@@ -243,11 +243,9 @@ export default function FlipListPage() {
                       <FlipCardTitle>
                         {keywords
                           ? formatKeywords(keywords.words)
-                          : t('Missing keywords')}
+                          : t('missing_keywords')}
                       </FlipCardTitle>
-                      <FlipCardSubtitle>
-                        {t('Missing on client')}
-                      </FlipCardSubtitle>
+                      <FlipCardSubtitle>{t('missing_client')}</FlipCardSubtitle>
                     </Box>
                   </Box>
                 ))}

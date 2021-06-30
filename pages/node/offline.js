@@ -215,7 +215,7 @@ export default function Offline() {
           >
             <Flex direction="column" w={rem(480)}>
               <Flex fontSize={rem(14)}>
-                {t('node_is_unavailable', {
+                {t('node_unavailable_contact_owner', {
                   nsSeparator: '|',
                 })}
               </Flex>

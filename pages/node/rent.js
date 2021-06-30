@@ -1,5 +1,6 @@
 import {Box, CloseButton, Flex, Link, Radio, Stack, Text} from '@chakra-ui/core'
 import {useRouter} from 'next/router'
+import {useTranslation} from 'react-i18next'
 import {rem} from 'polished'
 import {useState} from 'react'
 import {useQuery} from 'react-query'
@@ -60,6 +61,7 @@ export default function Rent() {
   const [state, setState] = useState(0)
 
   const fetchProviders = () => getProviders()
+  const {t} = useTranslation()
 
   const {data: providers} = useQuery(['providers'], fetchProviders, {
     initialData: [],
@@ -75,7 +77,7 @@ export default function Rent() {
     <Layout canRedirect={false}>
       <Page>
         <Flex align="center" alignSelf="stretch" justify="space-between">
-          <PageTitle>Rent a shared node</PageTitle>
+          <PageTitle>{t('rent_shared_node')}</PageTitle>
           <CloseButton onClick={() => router.back()} />
         </Flex>
         <Flex width="100%">
@@ -83,14 +85,14 @@ export default function Rent() {
             <thead>
               <TableRow>
                 <TableHeaderCol width={rem(40)}></TableHeaderCol>
-                <TableHeaderCol>Node URL</TableHeaderCol>
-                <TableHeaderCol>Owner</TableHeaderCol>
-                <TableHeaderCol>Location</TableHeaderCol>
+                <TableHeaderCol>{t('node_URL')}</TableHeaderCol>
+                <TableHeaderCol>{t('owner')}</TableHeaderCol>
+                <TableHeaderCol>{t('location')}</TableHeaderCol>
                 <TableHeaderCol className="text-right">
-                  Slots available
+                  {t('slots_available')}
                 </TableHeaderCol>
                 <TableHeaderCol className="text-right">
-                  Price per validation
+                  {t('price_per_validation')}
                 </TableHeaderCol>
               </TableRow>
             </thead>
@@ -139,10 +141,10 @@ export default function Rent() {
         >
           <Stack isInline spacing={2} justify="flex-end">
             <SecondaryButton onClick={() => router.back()}>
-              Cancel
+              {t('cancel')}
             </SecondaryButton>
             <PrimaryButton onClick={() => setShowDrawer(true)}>
-              Continue
+              {t('continue')}
             </PrimaryButton>
           </Stack>
         </Box>

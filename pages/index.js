@@ -114,42 +114,38 @@ export default function ProfilePage() {
   return (
     <Layout canRedirect={!dnaUrl}>
       <Page>
-        <PageTitle mb={8}>{t('Profile')}</PageTitle>
+        <PageTitle mb={8}>{t('profile')}</PageTitle>
         <Stack isInline spacing={10}>
           <Stack spacing={6}>
             <UserInlineCard address={coinbase} state={state} />
             <UserStatList>
-              <SimpleUserStat label={t('Address')} value={coinbase} />
+              <SimpleUserStat label={t('address')} value={coinbase} />
               {state === IdentityStatus.Newbie ? (
                 <AnnotatedUserStat
-                  annotation={t('Solve more than 12 flips to become Verified')}
-                  label={t('Status')}
+                  annotation={t('solve_more_filps')}
+                  label={t('status')}
                   value={mapIdentityToFriendlyStatus(state)}
                 />
               ) : (
                 <SimpleUserStat
-                  label={t('Status')}
+                  label={t('status')}
                   value={mapIdentityToFriendlyStatus(state)}
                 />
               )}
               <UserStat>
-                <UserStatLabel>{t('Balance')}</UserStatLabel>
+                <UserStatLabel>{t('balance')}</UserStatLabel>
                 <UserStatValue>{toDna(balance)}</UserStatValue>
               </UserStat>
               {stake > 0 && state === IdentityStatus.Newbie && (
                 <Stack spacing={4}>
                   <AnnotatedUserStat
-                    annotation={t(
-                      'You need to get Verified status to be able to terminate your identity and withdraw the stake'
-                    )}
-                    label={t('Stake')}
+                    annotation={t('you_need_verified_status_terminate')}
+                    label={t('stake')}
                     value={toDna(stake * 0.25)}
                   />
                   <AnnotatedUserStat
-                    annotation={t(
-                      'You need to get Verified status to get the locked funds into the normal wallet'
-                    )}
-                    label={t('Locked')}
+                    annotation={t('you_need_verified_status_locked')}
+                    label={t('locked')}
                     value={toDna(stake * 0.75)}
                   />
                 </Stack>
@@ -157,37 +153,33 @@ export default function ProfilePage() {
 
               {stake > 0 && state !== IdentityStatus.Newbie && (
                 <AnnotatedUserStat
-                  annotation={t(
-                    'In order to withdraw the stake you have to terminate your identity'
-                  )}
-                  label={t('Stake')}
+                  annotation={t('in_oder_withdraw_stake')}
+                  label={t('stake')}
                   value={toDna(stake)}
                 />
               )}
 
               {penalty > 0 && (
                 <AnnotatedUserStat
-                  annotation={t(
-                    "Your node was offline more than 1 hour. The penalty will be charged automaically. Once it's fully paid you'll continue to mine coins."
-                  )}
-                  label={t('Mining penalty')}
+                  annotation={t('your_node_offline_more_than_hour')}
+                  label={t('mining_penalty')}
                   value={toDna(penalty)}
                 />
               )}
 
-              {age > 0 && <SimpleUserStat label="Age" value={age} />}
+              {age > 0 && <SimpleUserStat label={t('age')} value={age} />}
 
               {epoch && (
                 <SimpleUserStat
-                  label={t('Next validation')}
+                  label={t('next_validation')}
                   value={new Date(epoch.nextValidation).toLocaleString()}
                 />
               )}
 
               {totalQualifiedFlips > 0 && (
                 <AnnotatedUserStat
-                  annotation={t('Total score for all validations')}
-                  label={t('Total score')}
+                  annotation={t('total_score_validations')}
+                  label={t('total_score')}
                 >
                   <UserStatValue>
                     {totalShortFlipPoints} out of {totalQualifiedFlips} (
@@ -211,14 +203,14 @@ export default function ProfilePage() {
             </Box>
             <Stack spacing={1} align="flex-start">
               <IconLink href="/flips/new" icon={<Icon name="photo" size={5} />}>
-                {t('New flip')}
+                {t('new_flip')}
               </IconLink>
               <IconButton2
                 isDisabled={!true}
                 icon="delete"
                 onClick={onOpenKillForm}
               >
-                {t('Terminate')}
+                {t('terminate')}
               </IconButton2>
             </Stack>
           </Stack>

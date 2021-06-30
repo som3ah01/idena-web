@@ -36,10 +36,6 @@ export function toPercent(value) {
 }
 
 export const toLocaleDna = locale => {
-  // TODO to check better code later
-  if (!locale) {
-    i18next.loadLanguages('en')
-  }
   const formatter = new Intl.NumberFormat(locale, {
     maximumFractionDigits: 18,
   })

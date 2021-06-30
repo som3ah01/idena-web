@@ -26,7 +26,7 @@ function MyError({statusCode, hasGetInitialPropsRun, err}) {
   return (
     <Layout>
       <article>
-        <div>{t('Something went wrong')}</div>
+        <div>{t('Something went something_went_wrongwrong')}</div>
         <div>
           <section>
             <h2>
@@ -36,7 +36,7 @@ function MyError({statusCode, hasGetInitialPropsRun, err}) {
             </h2>
             <div>
               <Button onClick={() => Router.push('/')}>
-                {t('Go to My Idena')}
+                {t('go_to_idena')}
               </Button>
             </div>
           </section>
