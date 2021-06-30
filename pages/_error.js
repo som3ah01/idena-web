@@ -26,7 +26,7 @@ function MyError({statusCode, hasGetInitialPropsRun, err}) {
   return (
     <Layout>
       <article>
-        <div>{t('Something went something_went_wrongwrong')}</div>
+        <div>{t('something_went_wrong')}</div>
         <div>
           <section>
             <h2>
