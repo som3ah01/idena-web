@@ -15,7 +15,7 @@
     "import" : "استراد",
     "loading" : "تحميل...",
     "offline" : "غير متصل",
-    "expiring": "تنتهى",
+    "expiring": "سوف تنتهي",
     "online": "متصل",
     "access_to_shared_node_will_expired" : "صلاحية الوصول الى هذه  نود اى نقطة الوصول المشتركة سوف تنتهي بعد هذه الجلسة {{nextValidation}}",
     "my_idena": "ايدينا الخاص بي",
